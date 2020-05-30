@@ -26,6 +26,9 @@
         </table>
     @endif
     
+    {{-- ページネーションへのリンク --}}
+    {{ $tasks->links() }}
+    
     {{-- 新規作成ページリンク --}}
     {!! link_to_route('tasks.create', '新規タスクの作成', [], ['class' => 'btn btn-sm btn-primary']) !!}
 

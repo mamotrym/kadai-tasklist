@@ -11,7 +11,7 @@ class TaskController extends Controller
     //一覧表示
     public function index()
     {
-        $tasks = Task::all();
+        $tasks = Task::orderBy('id', 'asc')->paginate(25);
         
         return view('tasks.index', [
             'tasks' => $tasks,
