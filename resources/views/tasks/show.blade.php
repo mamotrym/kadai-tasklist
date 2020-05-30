@@ -7,6 +7,7 @@
     <div class="card mb-3">
         <div class="card-header">id:{{ $task->id }}</div>
         <div class="card-body">
+            <p class="card-text">ステータス：{{ $task->status }}</p>
             <p class="card-text">{{ $task->content }}</p>
         </div>
     </div>
