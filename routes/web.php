@@ -26,5 +26,5 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
 // 認証を必要とするルーティンググループ
 Route::group(['middleware' => ['auth']], function () {
-    Route::resource('tasks', 'TaskController', ['only' => ['store', 'destroy', 'show', 'index']]);
+    Route::resource('tasks', 'TaskController', ['only' => ['store', 'destroy', 'show']]);
 });

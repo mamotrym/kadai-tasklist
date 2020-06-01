@@ -92,16 +92,18 @@ class TaskController extends Controller
         ]);
         
         $task = Task::findOrFail($id);
-        /*ユーザ認証をつける前
+        /*ユーザ認証をつける前*/
         $task->status = $request->status;
         $task->content = $request->content;
         $task->save();
-        */
+        
+        /*
         // 認証済みユーザの投稿として更新
         $request->user()->tasks()->create([
             'status' => $request->status,
             'content' => $request->content,
         ]);
+        */
         
         return redirect('/');
     }
@@ -112,7 +114,7 @@ class TaskController extends Controller
         $task = Task::findOrFail($id);
         
         // 認証済みユーザがその投稿の所有者である場合は投稿を削除
-        if (\Auth::id() === $tasks->user_id) {
+        if (\Auth::id() === $task->user_id) {
             $task->delete();
         }
         

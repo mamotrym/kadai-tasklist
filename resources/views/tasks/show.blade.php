@@ -12,6 +12,7 @@
         </div>
     </div>
     
+    @if (Auth::id() == $task->user_id)
     {{-- 編集ページリンク --}}
     {!! link_to_route('tasks.edit', 'このタスクを編集', ['task' => $task->id], ['class' => 'btn btn-sm btn-secondary mb-2']) !!}
     
@@ -20,4 +21,6 @@
         {!! Form::submit('削除する', ['class' => 'btn btn-sm btn-danger']) !!}
     {!! Form::close() !!}
     
+    @endif
+
 @endsection
