@@ -21,6 +21,7 @@
                 {!! Form::submit('更新', ['class' => 'btn btn-sm btn-primary']) !!}
 
             {!! Form::close() !!}
+            <div>投稿USER：{{ $task->user_id }}</div>
         </div>
     </div>
 

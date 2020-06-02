@@ -67,20 +67,28 @@ class TaskController extends Controller
     public function show($id)
     {
         $task = Task::findOrFail($id);
-        
-        return view('tasks.show', [
-            'task' => $task,
-        ]);
+        // 認証済みユーザがその投稿の所有者である場合は表示
+        if (\Auth::id() === $task->user_id) {
+            return view('tasks.show', [
+                'task' => $task,
+            ]);
+        } else {
+            return redirect('/');
+        }
     }
 
     // 更新画面（フォーム）
     public function edit($id)
     {
         $task = Task::findOrFail($id);
-        
-        return view('tasks.edit', [
-            'task' => $task,
-        ]);
+        // 認証済みユーザがその投稿の所有者である場合は表示
+        if (\Auth::id() === $task->user_id) { 
+            return view('tasks.edit', [
+                'task' => $task,
+            ]);
+        } else {
+            return redirect('/');
+        }
     }
 
     // 更新処理
@@ -98,7 +106,7 @@ class TaskController extends Controller
         $task->save();
         
         /*
-        // 認証済みユーザの投稿として更新
+        // 認証済みユーザの投稿として更新（→エラー）
         $request->user()->tasks()->create([
             'status' => $request->status,
             'content' => $request->content,
